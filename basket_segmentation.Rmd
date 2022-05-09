@@ -1,0 +1,175 @@
+---
+title: "df2_analysis"
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+basket=df2
+basket = basket[,-1]
+basket
+write.csv(basket,"basket.csv", quote = FALSE, row.names = TRUE)
+
+```
+
+```{r}
+head(basket)
+```
+
+```{r}
+library(arules)
+```
+
+```{r}
+# Convert CSV file to Basket Format
+txn = read.transactions(file="basket.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+print(txn)
+```
+```{r}
+txn@itemInfo$labels <- gsub("\"","",txn@itemInfo$labels)
+```
+
+```{r}
+basket_rules <- apriori(txn, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+```
+
+```{r}
+print(length(basket_rules))
+```
+
+```{r}
+# For all dataset
+inspect(basket_rules[1:5])
+```
+
+```{r}
+# For June:
+basket2 = orders_june[,-c(1,2)]
+basket2
+write.csv(basket2,"basket2.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn2 = read.transactions(file="basket2.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn2@itemInfo$labels <- gsub("\"","",txn2@itemInfo$labels)
+basket_rules2 <- apriori(txn2, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules2))
+```
+```{r}
+# June
+inspect(basket_rules2[1:7])
+```
+
+```{r}
+# For July:
+basket3 = orders_july[,-c(1,2)]
+basket3
+write.csv(basket3,"basket3.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn3 = read.transactions(file="basket3.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn3@itemInfo$labels <- gsub("\"","",txn3@itemInfo$labels)
+basket_rules3 <- apriori(txn3, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules3))
+```
+
+```{r}
+# July
+inspect(basket_rules3[1:6])
+```
+
+```{r}
+# For August:
+basket4 = orders_august[,-c(1,2)]
+basket4
+write.csv(basket4,"basket4.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn4 = read.transactions(file="basket4.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn4@itemInfo$labels <- gsub("\"","",txn4@itemInfo$labels)
+basket_rules4 <- apriori(txn4, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules4))
+```
+```{r}
+# August
+inspect(basket_rules4[1:4])
+```
+
+```{r}
+# For September:
+basket5 = orders_september[,-c(1,2)]
+basket5
+write.csv(basket5,"basket5.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn5 = read.transactions(file="basket5.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn5@itemInfo$labels <- gsub("\"","",txn5@itemInfo$labels)
+basket_rules5 <- apriori(txn5, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules5))
+```
+
+```{r}
+# September
+inspect(basket_rules5[1:8])
+```
+```{r}
+# For October:
+basket6 = orders_october[,-c(1,2)]
+basket6
+write.csv(basket6,"basket6.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn6 = read.transactions(file="basket6.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn6@itemInfo$labels <- gsub("\"","",txn6@itemInfo$labels)
+basket_rules6 <- apriori(txn6, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules6))
+```
+
+```{r}
+# October
+inspect(basket_rules6[1:12])
+```
+
+```{r}
+# For November:
+basket7 = orders_november[,-c(1,2)]
+basket7
+write.csv(basket7,"basket7.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn7 = read.transactions(file="basket7.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn7@itemInfo$labels <- gsub("\"","",txn7@itemInfo$labels)
+basket_rules7 <- apriori(txn7, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules7))
+```
+
+```{r}
+# November
+inspect(basket_rules7[1:8])
+```
+
+```{r}
+# For December:
+basket8 = orders_december[,-c(1,2)]
+basket8
+write.csv(basket8,"basket8.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn8 = read.transactions(file="basket8.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn8@itemInfo$labels <- gsub("\"","",txn8@itemInfo$labels)
+basket_rules8 <- apriori(txn8, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules8))
+```
+
+```{r}
+# December
+inspect(basket_rules8[1:6])
+```
+```{r}
+# For January:
+basket9 = orders_january[,-c(1,2)]
+basket9
+write.csv(basket9,"basket9.csv", quote = FALSE, row.names = TRUE)
+# Convert CSV file to Basket Format
+txn9 = read.transactions(file="basket9.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1);
+txn9@itemInfo$labels <- gsub("\"","",txn9@itemInfo$labels)
+basket_rules9 <- apriori(txn9, parameter = list(minlen=2, sup = 0.001, conf = 0.05, target="rules"))
+print(length(basket_rules9))
+```
+
+```{r}
+# January
+inspect(basket_rules9[1:4])
+```
